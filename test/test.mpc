@@ -1,0 +1,7 @@
+project(test):build_files,lukeexeout{
+    exename=test
+    after+=lukezipper
+    libs+=lukezipper
+    includes += ../zipper/include
+}
+
