@@ -3,5 +3,10 @@ project(test):build_files,lukeexeout{
     after+=lukezipper
     libs+=lukezipper
     includes += ../zipper/include
+    specific(make){
+        Debug::ccflags="-g -O0 -std=c++11 -Wall -W -fPIC"
+        Release::ccflags="-O3 -std=c++11 -Wall -W -fPIC"
+        linkflags="-Wl,-rpath=\".\""
+    }
 }
 

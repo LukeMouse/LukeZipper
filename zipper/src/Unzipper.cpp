@@ -16,11 +16,12 @@
 #include <fstream>
 #include <stdexcept>
 #include <iostream>
-//#include <utime.h>
 
 #if defined(USE_WINDOWS)
 #include <windows.h>
 #include "iowin32.h"
+#else
+#include <utime.h>
 #endif
 
 #ifndef ZIPPER_WRITE_BUFFER_SIZE

@@ -1,4 +1,4 @@
-project(lukezipper):build_files,lukelibout,lukedynamic{
+project(lukezipper):build_files,lukelibout,lukedynamic,lukewin{
     staticname=lukezipper
     sharedname=
     includes +=zlib/include ./include .
@@ -14,6 +14,48 @@ project(lukezipper):build_files,lukelibout,lukedynamic{
         utils/*.cpp
         src/*.cpp
         zlib/src/*.c
+    }
+
+    Header_Files{
+        utils/*.hpp
+        zlib/include/*.h
+    }
+}
+
+project(lukezipper):build_files,lukelibout,lukedynamic,lukelinux{
+    staticname=lukezipper
+    sharedname=
+    includes +=zlib/include ./include .
+
+    specific(make){
+        Debug::ccflags="-g -O0 -std=c++11 -Wall -W -fPIC"
+        Release::ccflags="-O3 -std=c++11 -Wall -W -fPIC"
+        linkflags="-Wl,-rpath=\".\""
+    }
+
+    Source_Files{
+        utils/*.cpp
+        src/*.cpp
+        zlib/src/adler32.c
+        zlib/src/deflate.c
+        zlib/src/gzread.c
+        zlib/src/inffast.c
+        zlib/src/ioapi.c
+        zlib/src/unzip.c
+        zlib/src/compress.c
+        zlib/src/gzclose.c
+        zlib/src/gzwrite.c
+        zlib/src/inflate.c
+        zlib/src/ioapi_buf.c
+        zlib/src/trees.c
+        zlib/src/zip.c
+        zlib/src/crc32.c
+        zlib/src/gzlib.c
+        zlib/src/infback.c
+        zlib/src/inftrees.c
+        zlib/src/ioapi_mem.c
+        zlib/src/uncompr.c
+        zlib/src/zutil.c
     }
 
     Header_Files{
