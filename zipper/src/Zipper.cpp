@@ -289,15 +289,15 @@ struct Zipper::Impl
         std::string canonNameInZip = Path::canonicalPath(nameInZip);
 
         /* Prevent Zip Slip attack (See ticket #33) */
-        if (canonNameInZip.find_first_of("..") == 0u)
-        {
-            std::stringstream str;
-            str << "Security error: forbidden insertion of "
-                << nameInZip << " (canonic: " << canonNameInZip
-                << ") to prevent possible Zip Slip attack";
-            m_error_code = make_error_code(zipper_error::SECURITY_ERROR, str.str());
-            return false;
-        }
+        //if (canonNameInZip.find_first_of("..") == 0u)
+        //{
+        //    std::stringstream str;
+        //    str << "Security error: forbidden insertion of "
+        //        << nameInZip << " (canonic: " << canonNameInZip
+        //        << ") to prevent possible Zip Slip attack";
+        //    m_error_code = make_error_code(zipper_error::SECURITY_ERROR, str.str());
+        //    return false;
+        //}
 
         flags = flags & ~int(Zipper::zipFlags::SaveHierarchy);
         if (flags == Zipper::zipFlags::Store)

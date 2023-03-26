@@ -169,7 +169,8 @@ std::string Path::dirName(const std::string& path)
         return path;
 
     size_t pos = 0;
-    if ((pos = path.rfind(DIRECTORY_SEPARATOR)) != std::string::npos)
+    if ((pos = path.rfind(DIRECTORY_SEPARATOR)) != std::string::npos ||
+        (pos = path.rfind("/")) != std::string::npos)
     {
         // Single = intended
         if (pos == 0) // /usr
