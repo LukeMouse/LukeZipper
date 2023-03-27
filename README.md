@@ -1,13 +1,37 @@
 # 功能说明
 
-将文件夹压缩到zip包中，可以设置密码
+本库对zlib、minizip、zipper和filesystem库进行了整合，实现了简单的接口实现将文件夹添加到zip文件的功能，本打算支持的VS最低版本为VS2013，但是由于该版本对C++11支持不完整，导致无法编译通过，因此当前版本最低支持的VS为VS2015。目前测试通过的最低版本gcc为7.3.0。
+
+将文件夹压缩到zip包中，可以设置密码，代码压缩示例如下：
 
 ```c++
-zipper::Zipper zipFile("D:/111.zip", "lukeMouse");
-std::string folderPath = "F:\\LukeGit\\LukeLib\\ThirdTools\\LukeZipper";
-zipFile.add(folderPath);
-zipFile.close();
+#ifdef WIN32
+    zipper::Zipper zipFile("D:/111.zip", "lukeMouse");
+    std::string folderPath = "F:\\LukeGit\\LukeLib\\ThirdTools\\LukeZipper";
+#else
+    zipper::Zipper zipFile("/home/lukemouse/Desktop/111.zip", "lukeMouse");
+    std::string folderPath = "/home/lukemouse/Desktop/LukeZipper/zipper";
+#endif
+    zipFile.add(folderPath);
+    zipFile.close();
+    std::cout << "Zip finished!" << std::endl;
 ```
+
+对应的解压示例代码如下：
+
+```C++
+#ifdef WIN32
+    zipper::Unzipper unZip("D:/111.zip", "lukeMouse");
+    unZip.extractAll("D:/lukeStudy");
+#else
+    zipper::Unzipper unZip("/home/lukemouse/Desktop/111.zip", "lukeMouse");
+    unZip.extractAll("/home/lukemouse/Desktop/lukeStudy");
+#endif
+    unZip.close();
+    std::cout << "Unzip finished!" << std::endl;
+```
+
+
 
 # 如何编译
 
